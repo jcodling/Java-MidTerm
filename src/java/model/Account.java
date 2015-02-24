@@ -26,7 +26,10 @@ public class Account {
 
     private double balance;
 
-    public void account() {
+    /**
+     * Create and initialize account.
+     */
+    public void Account() {
         balance = 0;
     }
 

@@ -33,12 +33,14 @@ import model.Account;
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
     
-    private Account account;
+    private Account account = new Account();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try(PrintWriter out = response.getWriter()) {
-            response.setHeader("Content-type","plain/text");
+            response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+            response.setHeader("Poragma", "no-cache");
+            response.setDateHeader("Expires", 0);
             out.println(account.getBalance());
             
         } catch (IOException ex) {
@@ -54,7 +56,9 @@ public class AccountServlet extends HttpServlet {
             response.setStatus(500);
         } else {
             try(PrintWriter out = response.getWriter()) {
-                response.setHeader("Content-type","plain/text");
+                response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
+                response.setHeader("Poragma", "no-cache");
+                response.setDateHeader("Expires", 0);
                 if(!request.getParameter("debit").isEmpty()) {
                     account.debit(Double.parseDouble(request.getParameter("debit")));
                 } else if (!request.getParameter("credit").isEmpty()) {
