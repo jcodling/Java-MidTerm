@@ -34,7 +34,6 @@ public class Account {
      */
     public void Account() {
         balance = 0;
-        System.out.println("Create:"+balance);
     }
 
     /**
@@ -43,7 +42,6 @@ public class Account {
      * @return - the balance
      */
     public double getBalance() {
-        System.out.println("Get: "+balance);
         return this.balance;
     }
 
@@ -54,7 +52,6 @@ public class Account {
      */
     public void credit(double cash) {
         this.balance += cash;
-        System.out.println("Credit: "+balance);
     }
 
     /**
@@ -64,7 +61,6 @@ public class Account {
      */
     public void debit(double cash) {
         this.balance -= cash;
-        System.out.println("Dedit: "+balance);
     }
 
     /**
@@ -72,6 +68,5 @@ public class Account {
      */
     public void close() {
         balance = 0;
-        System.out.println("Close: "+balance);
     }
 }
