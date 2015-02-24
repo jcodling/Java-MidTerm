@@ -39,7 +39,7 @@ public class AccountServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         try(PrintWriter out = response.getWriter()) {
             response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
-            response.setHeader("Poragma", "no-cache");
+            response.setHeader("Pragma", "no-cache");
             response.setDateHeader("Expires", 0);
             out.println(account.getBalance());
             
@@ -57,7 +57,7 @@ public class AccountServlet extends HttpServlet {
         } else {
             try(PrintWriter out = response.getWriter()) {
                 response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
-                response.setHeader("Poragma", "no-cache");
+                response.setHeader("Pragma", "no-cache");
                 response.setDateHeader("Expires", 0);
                 if(!request.getParameter("debit").isEmpty()) {
                     account.debit(Double.parseDouble(request.getParameter("debit")));
