@@ -49,11 +49,24 @@ public class AccountTest {
 
     @Test
     public void testGetBalanceIs100AfterCredit500ThenDebit400() {
-        
+        double cashin = 500;
+        double cashout = 400;
+        Account instance = new Account();
+        instance.credit(cashin);
+        instance.debit(cashout);
+        double expResult = 100;
+        double result = instance.getBalance();
+        assertEquals(expResult, result, 0.0);
     }
     
     @Test
     public void testGetBalanceIsZeroAfterCredit500ThenClose() {
-        
+        double cashin = 500;
+        Account instance = new Account();
+        instance.credit(cashin);
+        instance.close();
+        double expResult = 0;
+        double result = instance.getBalance();
+        assertEquals(expResult, result, 0.0);
     }
 }

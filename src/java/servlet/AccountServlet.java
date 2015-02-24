@@ -33,7 +33,7 @@ import model.Account;
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
     
-    private Account account = new Account();
+    public Account account = new Account();
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
