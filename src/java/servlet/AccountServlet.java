@@ -55,16 +55,18 @@ public class AccountServlet extends HttpServlet {
             // No parameters
             response.setStatus(500);
         } else {
+            // Parameters so check which ones
             try(PrintWriter out = response.getWriter()) {
                 response.setHeader("Cache-Control", "private, no-store, no-cache, must-revalidate");
                 response.setHeader("Pragma", "no-cache");
                 response.setDateHeader("Expires", 0);
-                if(!request.getParameter("debit").isEmpty()) {
+                
+                if(request.getParameter("debit") != null) {
                     account.debit(Double.parseDouble(request.getParameter("debit")));
-                } else if (!request.getParameter("credit").isEmpty()) {
+                } else if (request.getParameter("credit") != null) {
                     account.credit(Double.parseDouble(request.getParameter("credit")));
-                } else if (!request.getParameter("close").isEmpty()) {
-                    if(request.getParameter("close").equals("TRUE")) {
+                } else if (request.getParameter("close") != null) {
+                    if(request.getParameter("close").equals("true")) {
                         account.close();
                     }
                 }
