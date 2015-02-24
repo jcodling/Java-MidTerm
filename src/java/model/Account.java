@@ -13,44 +13,54 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 package model;
 
 import javax.enterprise.context.ApplicationScoped;
 
 /**
- * Stores an account balance and provides some basic methods to manipulate the balance
+ * Stores an account balance and provides some basic methods to manipulate the
+ * balance
  */
 @ApplicationScoped
 public class Account {
+
+    private double balance;
+
+    public void account() {
+        balance = 0;
+    }
+
     /**
      * Returns the current total balance of the account
+     *
      * @return - the balance
      */
     public double getBalance() {
-        return -999;
+        return this.balance;
     }
-    
+
     /**
      * Adds an amount of cash to the total balance of the account
+     *
      * @param cash - the cash to credit
      */
     public void credit(double cash) {
-        
+        balance += cash;
     }
-    
+
     /**
      * Deducts an amount of cash from the total balance of the account
+     *
      * @param cash - the cash to debit
      */
     public void debit(double cash) {
-    
+        balance -= cash;
     }
-    
+
     /**
      * Deducts all cash from the total balance of the account
      */
     public void close() {
-        
+        balance = 0;
     }
 }

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+/* Jeff Codling - c0471944 */
+
 package model;
 
 import org.junit.Test;

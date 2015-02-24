@@ -23,19 +23,19 @@ function refreshBalance() {
        }
     });
 }
-function withdraw() {
+function debit() {
     $.ajax({
        url: 'account',
        method: 'POST',
-       data: { 'withdraw' : $('#withdraw').val()},
+       data: { 'debit' : $('#debit').val()},
        success: refreshBalance
     });
 }
-function deposit() {
+function credit() {
     $.ajax({
        url: 'account',
        method: 'POST',
-       data: { 'deposit' : $('#deposit').val()},
+       data: { 'credit' : $('#credit').val()},
        success: refreshBalance
     });
 }

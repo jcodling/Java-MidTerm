@@ -14,10 +14,18 @@
  * limitations under the License.
  */
 
+/* Jeff Codling - c0471944 */
+
 package servlet;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import model.Account;
 
 /**
  * Provides an Account Balance and Basic Withdrawal/Deposit Operations
@@ -25,4 +33,42 @@ import javax.servlet.http.HttpServlet;
 @WebServlet("/account")
 public class AccountServlet extends HttpServlet {
     
+    private Account account;
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        try(PrintWriter out = response.getWriter()) {
+            response.setHeader("Content-type","plain/text");
+            out.println(account.getBalance());
+            
+        } catch (IOException ex) {
+            response.setStatus(500);
+//            Logger.log(Level.SEVERE, ex);
+        }
+    }
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        if(!request.getParameterNames().hasMoreElements()) {
+            // No parameters
+            response.setStatus(500);
+        } else {
+            try(PrintWriter out = response.getWriter()) {
+                response.setHeader("Content-type","plain/text");
+                if(!request.getParameter("debit").isEmpty()) {
+                    account.debit(Double.parseDouble(request.getParameter("debit")));
+                } else if (!request.getParameter("credit").isEmpty()) {
+                    account.credit(Double.parseDouble(request.getParameter("credit")));
+                } else if (!request.getParameter("close").isEmpty()) {
+                    if(request.getParameter("close").equals("TRUE")) {
+                        account.close();
+                    }
+                }
+                out.println(account.getBalance());
+            } catch (IOException ex) {
+                response.setStatus(500);
+                // Can't remember the way to output to the logger...
+            }
+        }
+    }
 }
