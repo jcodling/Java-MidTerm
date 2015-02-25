@@ -21,6 +21,7 @@ package servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -45,7 +46,7 @@ public class AccountServlet extends HttpServlet {
             
         } catch (IOException ex) {
             response.setStatus(500);
-//            Logger.log(Level.SEVERE, ex);
+            Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
@@ -73,7 +74,7 @@ public class AccountServlet extends HttpServlet {
                 out.println(account.getBalance());
             } catch (IOException ex) {
                 response.setStatus(500);
-                // Can't remember the way to output to the logger...
+                Logger.getLogger(AccountServlet.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
